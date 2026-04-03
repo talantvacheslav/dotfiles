@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/arbuz/Pictures/Wallpapers/22.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0d0d0d",
+        "foreground": "#d6d7da",
+        "cursor": "#d6d7da"
+    },
+    "colors": {
+        "color0": "#0d0d0d",
+        "color1": "#7D8188",
+        "color2": "#8B8E95",
+        "color3": "#989BA3",
+        "color4": "#9EA1A7",
+        "color5": "#ACAEB4",
+        "color6": "#B9BCC2",
+        "color7": "#d6d7da",
+        "color8": "#959698",
+        "color9": "#7D8188",
+        "color10": "#8B8E95",
+        "color11": "#989BA3",
+        "color12": "#9EA1A7",
+        "color13": "#ACAEB4",
+        "color14": "#B9BCC2",
+        "color15": "#d6d7da"
+    }
+}

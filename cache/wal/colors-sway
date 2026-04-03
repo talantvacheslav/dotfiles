@@ -1,0 +1,21 @@
+set $wallpaper /home/arbuz/Pictures/Wallpapers/22.jpg
+
+set $background #0d0d0d
+set $foreground #d6d7da
+
+set $color0 #0d0d0d
+set $color1 #7D8188
+set $color2 #8B8E95
+set $color3 #989BA3
+set $color4 #9EA1A7
+set $color5 #ACAEB4
+set $color6 #B9BCC2
+set $color7 #d6d7da
+set $color8 #959698
+set $color9 #7D8188
+set $color10 #8B8E95
+set $color11 #989BA3
+set $color12 #9EA1A7
+set $color13 #ACAEB4
+set $color14 #B9BCC2
+set $color15 #d6d7da

@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/arbuz/Pictures/Wallpapers/22.jpg"
+let background = "#0d0d0d"
+let foreground = "#d6d7da"
+let cursor     = "#d6d7da"
+
+" Colors
+let color0  = "#0d0d0d"
+let color1  = "#7D8188"
+let color2  = "#8B8E95"
+let color3  = "#989BA3"
+let color4  = "#9EA1A7"
+let color5  = "#ACAEB4"
+let color6  = "#B9BCC2"
+let color7  = "#d6d7da"
+let color8  = "#959698"
+let color9  = "#7D8188"
+let color10 = "#8B8E95"
+let color11 = "#989BA3"
+let color12 = "#9EA1A7"
+let color13 = "#ACAEB4"
+let color14 = "#B9BCC2"
+let color15 = "#d6d7da"
