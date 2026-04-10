@@ -7,13 +7,13 @@
 ```bash
 git clone https://github.com/talantvacheslav/dotfiles.git
 cd dotfiles/
-cp config/* ~/.config/
-cp cache/* ~/.cache/
-cp xinitrc ~/.xinitrc
+cp -rf config/* ~/.config/
+cp -rf cache/* ~/.cache/
+cp -rf xinitrc ~/.xinitrc
 cd vxwm/
 make clean
 sudo make install
-sudo cp status.sh /bin/status.sh
+sudo cp -rf status.sh /bin/status.sh
 ```
 
 ## Usage
