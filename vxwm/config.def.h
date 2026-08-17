@@ -1,5 +1,4 @@
 #pragma once
-
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -32,8 +31,11 @@ static const int user_bh = 0;
 #endif
 
 #if BAR_PADDING
-static const int vertpad = 0;       /* vertical padding of bar */
-static const int sidepad = 500;       /* horizontal padding of bar */
+static const int top_vertpad = 0;          /* top vertical padding of bar */ 
+	static const int bottom_vertpad = 0;       /* bottom vertical padding of bar */
+	static const int left_sidepad = 500;         /* left horizontal padding of bar */
+	static const int right_sidepad = 500;        /* right horizontal padding of bar */
+
 #endif
 
 /* tagging */
@@ -56,15 +58,14 @@ static const char *occupiedtags[] = { "1+", "2+", "3+", "4+", "5+", "6+", "7+"};
 #define RESIZE_WITH_KEYBOARD_STEP 50 /* Defines by how many pixels windows will be resized with keyboard */
 #endif
 
-#if AUTOSTART
 /* vxwm will execute this on startup (can be skipped with -ignoreautostart vxwm flag). */
-
+#if AUTOSTART
 static const char *const autostart[] = {
-	"sh", "-c", "/home/arbuz/vxvm/vxwm/status.sh",
+	"sh", "-c", "/home/arbuz/vxvm/vxwm/autostart.sh;",
+	
 	NULL /* must end with NULL */
 };
 #endif
-
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -80,7 +81,7 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 #if LOCK_MOVE_RESIZE_REFRESH_RATE
-static const int refreshrate = 360;  /* refresh rate (per second) for client move/resize, set it to your monitor refresh rate or double of that*/
+static const int refreshrate = 180;  /* refresh rate (per second) for client move/resize, set it to your monitor refresh rate or double of that*/
 #endif //LOCK_MOVE_RESIZE_REFRESH_RATE
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -93,6 +94,9 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define ALTERNATE_MODKEY Mod1Mask
 
+#define SCROLL_UP Button4
+#define SCROLL_DOWN Button5
+	
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -104,7 +108,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", "-theme", "~/.config/rofi/clipboard.rasi", NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 
 static const char *termcmd[]  = { "kitty", "fish", NULL };
 static const char *filecmd[]  = { "nemo", NULL };
@@ -113,13 +117,23 @@ static const char *discordcmd[]  = { "discord", NULL };
 static const char *spotifycmd[]  = { "spotify", NULL };
 static const char *telegramcmd[]  = { "AyuGram", NULL };
 static const char *btopcmd[]  = { "kitty", "btop", NULL };
-static const char *clipcmd[]  = { "sh", "-c", "cliphist list | rofi -dmenu -i -p clipboard -theme ~/.config/rofi/clipboard.rasi | cliphist decode | xclip -selection clipboard", NULL };
+static const char *clipcmd[]  = { "sh", "-c", "zixclip-rofi.sh", NULL };
 static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -p $HOME/screenshots/ -c", NULL };
+static const char *musiccmd[]  = { "sh", "-c", "music.sh", NULL };
+// static const char *volpluscmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", NULL };
+// static const char *volminuscmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", NULL };
 
+#if ZOOM
+	static const char *zoomin[] = { "vcompmgr", "-Z", "+0.15", NULL }; // zoom in
+	static const char *zoomout[] = { "vcompmgr", "-Z", "-0.15", NULL }; // zoom out
+	static const char *zoomreset[] = { "vcompmgr", "-Z", "1", NULL }; // set zoom to 1
+	#endif
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+//	{ MODKEY,                       XK_x,      spawn,          {.v = volpluscmd } },
+//	{ MODKEY,                       XK_z,      spawn,          {.v = volminuscmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
@@ -129,15 +143,14 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = btopcmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY|ShiftMask,             XK_b,      togglebarposition, {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_0,      view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
@@ -159,8 +172,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+
 #if FULLSCREEN
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
+#endif
+#if XRDB
+  { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 #endif
 #if ENHANCED_TOGGLE_FLOATING
 	{ MODKEY|Mod1Mask,              XK_space,  enhancedtogglefloating, {0} },
@@ -177,6 +194,7 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_Up,     movecanvas,       {.i = 2} }, // Move your position up
   { MODKEY|ShiftMask,             XK_Down,   movecanvas,       {.i = 3} }, // Move your position down
   { MODKEY|ShiftMask,             XK_c,      centerwindow,     {0} },
+  { MODKEY|ControlMask,           XK_z,      pinwindow,        {0} },
 #endif
 #if DIRECTIONAL_FOCUS
 	{ ALTERNATE_MODKEY,             XK_Left,   focusdir,       {.i = 0 } }, // left
@@ -184,6 +202,11 @@ static const Key keys[] = {
 	{ ALTERNATE_MODKEY,             XK_Up,     focusdir,       {.i = 2 } }, // up
 	{ ALTERNATE_MODKEY,             XK_Down,   focusdir,       {.i = 3 } }, // down
 #endif
+#if ZOOM
+	 { ALTERNATE_MODKEY,              XK_r,      spawn,          {.v = zoomreset } },
+	 { MODKEY,                        XK_equal,  spawn,          {.v = zoomin } },
+	 { MODKEY,                        XK_minus,  spawn,          {.v = zoomout } },
+	#endif
 };
 
 /* button definitions */
@@ -191,12 +214,24 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 #if INFINITE_TAGS
-  { ClkRootWin,      MODKEY|ShiftMask,         Button1,        manuallymovecanvas,     {0} },
-  { ClkClientWin,    MODKEY|ShiftMask,         Button1,        manuallymovecanvas,     {0} },
+ 	  { ClkRootWin,           MODKEY|ShiftMask,         Button1,        movecanvasmouse,     {.f = 1.5 } }, 
+	  { ClkClientWin,         MODKEY|ShiftMask,         Button1,        movecanvasmouse,     {.f = 1.5 } },
+	  { ClkRootWin,           0,                        Button1,        movecanvasmouse,     {.f = 1.5 } },
+	  /* .f = 1 is moving multiplier, for example if set to 0.5, canvas will move 2 times slower, if set to 2, canvas will move 2 times faster. 
+	     If you want inverted canvas move then set the value to a negative value. */
+
+#endif
+	#if ZOOM
+	  { ClkRootWin,           MODKEY,         SCROLL_UP,      spawn,          {.v = zoomin } },
+	  { ClkRootWin,           MODKEY,         SCROLL_DOWN,    spawn,          {.v = zoomout } },
+	
+	  { ClkClientWin,         MODKEY,         SCROLL_UP,      spawn,          {.v = zoomin } },
+	  { ClkClientWin,         MODKEY,         SCROLL_DOWN,    spawn,          {.v = zoomout } },
+
+
 #endif
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },

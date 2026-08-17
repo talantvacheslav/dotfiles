@@ -55,3 +55,7 @@
 #if EXTERNAL_BARS
 #include "externalbars/externalbars.c"
 #endif
+
+#if ZOOM
+#include "zoom/zoom.c"
+#endif

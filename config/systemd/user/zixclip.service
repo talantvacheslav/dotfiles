@@ -1,0 +1,13 @@
+[Unit]
+Description=Zixclip clipboard manager
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/zixclip daemon
+Restart=always
+RestartSec=1
+Environment="DISPLAY=:0"
+
+[Install]
+WantedBy=graphical-session.target

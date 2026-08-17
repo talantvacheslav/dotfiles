@@ -2,7 +2,7 @@
 
 #xrandr --output DP-0 --mode 1920x1080 --rate 180.00 --output DVI-D-0 --mode 1680x1050 --rate 60 --right-of DP-0
 
-status.sh & #sudo cp ~/dotfiles/vxwm/status.sh /bin/status.sh
+status.sh & 
 xclip &
 xset r rate 250 40 &
 xinput --set-prop 10 "libinput Accel Speed" -1 &

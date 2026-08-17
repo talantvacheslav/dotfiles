@@ -34,10 +34,12 @@ dist: clean
 	rm -rf vxwm-${VERSION}
 
 install: all
-	install -D -m 755 vxwm ${DESTDIR}${PREFIX}/bin/vxwm
-	install -D -m 755 rvx  ${DESTDIR}${PREFIX}/bin/rvx
-	install -D -m 644 vxwm.1 ${DESTDIR}${MANPREFIX}/man1/vxwm.1
-	sed -i 's/VERSION/${VERSION}/g' ${DESTDIR}${MANPREFIX}/man1/vxwm.1
+	mkdir -p ${DESTDIR}${PREFIX}/bin
+		cp -f vxwm ${DESTDIR}${PREFIX}/bin/vxwm
+		chmod 755 ${DESTDIR}${PREFIX}/bin/vxwm
+		mkdir -p ${DESTDIR}${MANPREFIX}/man1
+		sed "s/VERSION/${VERSION}/g" < vxwm.1 > ${DESTDIR}${MANPREFIX}/man1/vxwm.1
+		chmod 644 ${DESTDIR}${MANPREFIX}/man1/vxwm.1
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/vxwm\
