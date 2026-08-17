@@ -61,7 +61,7 @@ static const char *occupiedtags[] = { "1+", "2+", "3+", "4+", "5+", "6+", "7+"};
 /* vxwm will execute this on startup (can be skipped with -ignoreautostart vxwm flag). */
 #if AUTOSTART
 static const char *const autostart[] = {
-	"sh", "-c", "/home/arbuz/vxvm/vxwm/autostart.sh;",
+	"sh", "-c", "",
 	
 	NULL /* must end with NULL */
 };
@@ -94,8 +94,6 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define ALTERNATE_MODKEY Mod1Mask
 
-#define SCROLL_UP Button4
-#define SCROLL_DOWN Button5
 	
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -119,15 +117,8 @@ static const char *telegramcmd[]  = { "AyuGram", NULL };
 static const char *btopcmd[]  = { "kitty", "btop", NULL };
 static const char *clipcmd[]  = { "sh", "-c", "zixclip-rofi.sh", NULL };
 static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -p $HOME/screenshots/ -c", NULL };
-static const char *musiccmd[]  = { "sh", "-c", "music.sh", NULL };
-// static const char *volpluscmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", NULL };
-// static const char *volminuscmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", NULL };
 
-#if ZOOM
-	static const char *zoomin[] = { "vcompmgr", "-Z", "+0.15", NULL }; // zoom in
-	static const char *zoomout[] = { "vcompmgr", "-Z", "-0.15", NULL }; // zoom out
-	static const char *zoomreset[] = { "vcompmgr", "-Z", "1", NULL }; // set zoom to 1
-	#endif
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -143,7 +134,6 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = btopcmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
-	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -202,12 +192,6 @@ static const Key keys[] = {
 	{ ALTERNATE_MODKEY,             XK_Up,     focusdir,       {.i = 2 } }, // up
 	{ ALTERNATE_MODKEY,             XK_Down,   focusdir,       {.i = 3 } }, // down
 #endif
-#if ZOOM
-	 { ALTERNATE_MODKEY,              XK_r,      spawn,          {.v = zoomreset } },
-	 { MODKEY,                        XK_equal,  spawn,          {.v = zoomin } },
-	 { MODKEY,                        XK_minus,  spawn,          {.v = zoomout } },
-	#endif
-};
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
@@ -221,15 +205,7 @@ static const Button buttons[] = {
 	     If you want inverted canvas move then set the value to a negative value. */
 
 #endif
-	#if ZOOM
-	  { ClkRootWin,           MODKEY,         SCROLL_UP,      spawn,          {.v = zoomin } },
-	  { ClkRootWin,           MODKEY,         SCROLL_DOWN,    spawn,          {.v = zoomout } },
-	
-	  { ClkClientWin,         MODKEY,         SCROLL_UP,      spawn,          {.v = zoomin } },
-	  { ClkClientWin,         MODKEY,         SCROLL_DOWN,    spawn,          {.v = zoomout } },
 
-
-#endif
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
