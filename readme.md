@@ -27,16 +27,22 @@ startx
 ```
 
 ## Dependencies
-required: libx11 libxft libxinerama pywal
+required: libx11 libxft libxinerama pywal 
+
 optional(can be changed in config): kitty fish picom rofi nemo flameshot firefox dunst AyuGram discord 
 
 ## Applications binds
 
 `super+e` nemo
+
 `super+t` kitty
+
 `super+w` firefox
+
 `super+s` ayugram
+
 `super+d` discord
+
 `super+a` spotify
 
 
