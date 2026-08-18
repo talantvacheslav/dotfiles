@@ -5,20 +5,19 @@
 ## Installation
 
 ```bash
-git clone https://github.com/talantvacheslav/dotfiles.git
-cd dotfiles/
+git clone https://github.com/talantvacheslav/vxwmdots.git
+cd vxwmdots/
+
 cp -rf config/* ~/.config/
-cp -rf cache/* ~/.cache/
 cp -rf xinitrc ~/.xinitrc
+
 cd vxwm/
 make 
 sudo make install
-sudo cp -rf status.sh /bin/status.sh
+
 cd ..
-cd zixclip
+cd scripts/
 gcc zixclip.c -o zixclip -lX11 -lXfixes -lsqlite3 -lcrypto
-sudo cp -rf zixclip /bin/zixclip #add it to autostart later any method you want
-sudo cp -rf zixclip-rofi.sh /bin/zixclip-rofi.sh
 ```
 
 ## Usage
@@ -27,14 +26,15 @@ sudo cp -rf zixclip-rofi.sh /bin/zixclip-rofi.sh
 startx
 ```
 
-## Dependencies(?)
-kitty fish pywal picom rofi nemo flameshot zen-browser dunst btop AyuGram discord 
+## Dependencies
+required: libx11 libxft libxinerama pywal
+optional(can be changed in config): kitty fish picom rofi nemo flameshot firefox dunst AyuGram discord 
 
 ## Applications binds
 
 `super+e` nemo
 `super+t` kitty
-`super+w` zen-browser
+`super+w` firefox
 `super+s` ayugram
 `super+d` discord
 `super+a` spotify

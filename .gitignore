@@ -1,0 +1,5 @@
+vxwm/*.o
+vxwm/vxwm
+vxwm/config.h
+vxwm/modules.h
+scripts/zixclip

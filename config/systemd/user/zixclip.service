@@ -4,7 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/zixclip daemon
+ExecStart=%h/vxwmdots/scripts/zixclip
 Restart=always
 RestartSec=1
 Environment="DISPLAY=:0"

@@ -110,30 +110,28 @@ static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 
 static const char *termcmd[]  = { "kitty", "fish", NULL };
 static const char *filecmd[]  = { "nemo", NULL };
-static const char *browsercmd[]  = { "zen-browser", NULL };
+static const char *browsercmd[]  = { "firefox", NULL };
 static const char *discordcmd[]  = { "discord", NULL };
 static const char *spotifycmd[]  = { "spotify", NULL };
 static const char *telegramcmd[]  = { "AyuGram", NULL };
-static const char *btopcmd[]  = { "kitty", "btop", NULL };
-static const char *clipcmd[]  = { "sh", "-c", "zixclip-rofi.sh", NULL };
+static const char *clipcmd[]  = { "sh", "-c", "~/vxwmdots/scripts/zixclip-rofi.sh", NULL };
 static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -p $HOME/screenshots/ -c", NULL };
+static const char *rofiwallpapercmd[] = { "sh", "-c", "~/vxwmdots/scripts/rofi-wallpaper.sh"};
 
 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-//	{ MODKEY,                       XK_x,      spawn,          {.v = volpluscmd } },
-//	{ MODKEY,                       XK_z,      spawn,          {.v = volminuscmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = discordcmd } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = spotifycmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = telegramcmd } },
-	{ MODKEY|ShiftMask,             XK_u,      spawn,          {.v = btopcmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
+	{ MODKEY,			XK_m,      spawn,	   {.v = rofiwallpapercmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -162,6 +160,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+
 
 #if FULLSCREEN
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
@@ -192,6 +191,7 @@ static const Key keys[] = {
 	{ ALTERNATE_MODKEY,             XK_Up,     focusdir,       {.i = 2 } }, // up
 	{ ALTERNATE_MODKEY,             XK_Down,   focusdir,       {.i = 3 } }, // down
 #endif
+};
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
