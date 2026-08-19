@@ -108,30 +108,32 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 
-static const char *termcmd[]  = { "kitty", "fish", NULL };
-static const char *filecmd[]  = { "nemo", NULL };
-static const char *browsercmd[]  = { "firefox", NULL };
-static const char *discordcmd[]  = { "discord", NULL };
-static const char *spotifycmd[]  = { "spotify", NULL };
-static const char *telegramcmd[]  = { "AyuGram", NULL };
-static const char *clipcmd[]  = { "sh", "-c", "~/vxwmdots/scripts/zixclip-rofi.sh", NULL };
+static const char *terminal[]  = { "kitty", "fish", NULL };
+static const char *filemanager[]  = { "nemo", NULL };
+static const char *browser[]  = { "firefox", NULL };
+static const char *discord[]  = { "discord", NULL };
+static const char *spotify[]  = { "spotify", NULL };
+static const char *ayugram[]  = { "AyuGram", NULL };
+static const char *clipboard[]  = { "sh", "-c", "~/vxwmdots/scripts/zixclip-rofi.sh", NULL };
 static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -p $HOME/screenshots/ -c", NULL };
-static const char *rofiwallpapercmd[] = { "sh", "-c", "~/vxwmdots/scripts/rofi-wallpaper.sh"};
+static const char *rofiwallpaper[] = { "sh", "-c", "~/vxwmdots/scripts/rofi-wallpaper.sh"};
+static const char *walr[] = {"sh", "-c", "wal -R"};
 
 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_t,      spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = discordcmd } },
-	{ MODKEY,                       XK_a,      spawn,          {.v = spotifycmd } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = telegramcmd } },
-	{ MODKEY,                       XK_v,      spawn,          {.v = clipcmd } },
+	{ MODKEY,                       XK_t,      spawn,          {.v = terminal } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = filemanager } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = browser } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = discord } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = spotify } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = ayugram } },
+	{ MODKEY,                       XK_v,      spawn,          {.v = clipboard } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
-	{ MODKEY,			XK_m,      spawn,	   {.v = rofiwallpapercmd } },
+	{ MODKEY,			XK_m,      spawn,	   {.v = rofiwallpaper } },
+	{ MODKEY|ShiftMask,		XK_m,      spawn,	   {.v = walr } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -208,7 +210,7 @@ static const Button buttons[] = {
 
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = terminal } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
