@@ -1,0 +1,7 @@
+! vxwm/dwm colors from pywal
+dwm.normbgcolor: {background}
+dwm.normbordercolor: {color8}
+dwm.normfgcolor: {foreground}
+dwm.selbgcolor: {color6}
+dwm.selbordercolor: {color6}
+dwm.selfgcolor: {background}
