@@ -27,9 +27,9 @@ startx
 ```
 
 ## Dependencies
-required: libx11 libxft libxinerama pywal 
+libx11 libxft libxinerama pywal picom rofi dunst flameshot
 
-optional(can be changed in config): kitty fish picom rofi nemo flameshot firefox dunst AyuGram discord 
+kitty fish nemo firefox AyuGram discord 
 
 ## Applications binds
 
@@ -44,6 +44,8 @@ optional(can be changed in config): kitty fish picom rofi nemo flameshot firefox
 `super+d` discord
 
 `super+a` spotify
+
+`super+shift+s` flameshot
 
 
 #### see another binds in config.def.h

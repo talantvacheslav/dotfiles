@@ -115,7 +115,7 @@ static const char *discord[]  = { "discord", NULL };
 static const char *spotify[]  = { "spotify", NULL };
 static const char *ayugram[]  = { "AyuGram", NULL };
 static const char *clipboard[]  = { "sh", "-c", "~/vxwmdots/scripts/zixclip-rofi.sh", NULL };
-static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -p $HOME/screenshots/ -c", NULL };
+static const char *screenshotcmd[]  = { "sh", "-c", "flameshot gui -r -p $HOME/screenshots/ | xclip -selection clipboard -t image/png", NULL };
 static const char *rofiwallpaper[] = { "sh", "-c", "~/vxwmdots/scripts/rofi-wallpaper.sh"};
 static const char *walr[] = {"sh", "-c", "wal -R"};
 
